@@ -3,7 +3,17 @@ guid: a840ce17eff573c46b2d8746b5742401
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BarF
+    second: {fileID: 2100000, guid: 29029ee3ccc4dc74687990690e07247a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBlackPins
+    second: {fileID: 2100000, guid: c8c0913a7b4617140a96a816433a68ad, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,17 @@ guid: 11579390d3cdbce46b361d2907597a04
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BarD
+    second: {fileID: 2100000, guid: 2af49924348f2e841bd732a1d9c80824, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalBlackPins
+    second: {fileID: 2100000, guid: 51ae253b86eb02f47aea22c12a476011, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
