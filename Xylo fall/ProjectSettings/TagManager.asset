@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - ball
+  - BarL
+  - BarI
+  - BarBracket
   layers:
   - Default
   - TransparentFX
