@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 8307684693798901602}
   - component: {fileID: 4425187050199656123}
   - component: {fileID: 772810540882504549}
-  - component: {fileID: 5874017397646077382}
-  - component: {fileID: -8555366455394559976}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: BallAfter
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,37 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5874017397646077382
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7884375338077841858}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-8555366455394559976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7884375338077841858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76e8649f3cab6e44294807d631eb7a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  ballsHolder: {fileID: 8877849626186395467, guid: 91bb26713eb67764fabc5c01336aa302,
-    type: 3}
-  ball: {fileID: 7884375338077841858, guid: 887212f1c1c16bc499ce3c71fdc957c7, type: 3}
-  speedBall: 10
-  moveSpeed: 5
-  distanceFactor: 0.292
-  Radius: 0.427
-  gravityModifier: 1
