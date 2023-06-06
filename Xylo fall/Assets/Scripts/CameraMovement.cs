@@ -10,11 +10,17 @@ public class CameraMovement : MonoBehaviour
 
     private List<Transform> ballsTransforms; // List of all the balls with BallsEmpty as their parent
     private float overtakingOffset; // Offset for giving the camera priority when the last lowest ball stops moving
+    
 
     public void Start()
     {
-        ballsTransforms = BallsEmpty.GetComponentsInChildren<Transform>().Where(t => t.tag == "ball").ToList(); // Excluding the parent itself from the list
+        UpdateBallsList();
         overtakingOffset = 0.01f;
+    }
+
+    public void Update()
+    {
+        UpdateBallsList();
     }
 
     public void FixedUpdate()
@@ -31,6 +37,11 @@ public class CameraMovement : MonoBehaviour
             tempVector.y -= DefaultSpeed * Time.deltaTime;
             transform.position = tempVector;
         }
+    }
+
+    public void UpdateBallsList()
+    {
+        ballsTransforms = BallsEmpty.GetComponentsInChildren<Transform>().Where(t => t.tag == "ball").ToList();
     }
 
     private float GetLowestBallY()

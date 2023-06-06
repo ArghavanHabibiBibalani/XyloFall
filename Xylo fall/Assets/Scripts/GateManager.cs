@@ -9,12 +9,9 @@ public class GateManager : MonoBehaviour
     public int randomNum;
 
     void Start()
-    {
-
+    { 
         randomNum =Random.Range(2,5);
         gateNum.text = "X" + randomNum.ToString();
         randomNum -= 1;
-        
-
     }
 }
