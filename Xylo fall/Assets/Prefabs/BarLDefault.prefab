@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 150987471171651557}
   - component: {fileID: 2737235330995876655}
   - component: {fileID: 3620059185070927785}
+  - component: {fileID: 1111610266521177234}
   m_Layer: 0
   m_Name: BarLDefault
   m_TagString: BarL
@@ -99,3 +100,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4274965964783330087, guid: 237f70d7d8938f54c842c2459dea62da, type: 3}
+--- !u!114 &1111610266521177234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4538609691500466938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f2060c8b42dee4ab40a902b5456fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
