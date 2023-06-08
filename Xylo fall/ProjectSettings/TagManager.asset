@@ -8,6 +8,8 @@ TagManager:
   - BarL
   - BarI
   - BarBracket
+  - gate
+  - Mallet
   layers:
   - Default
   - TransparentFX

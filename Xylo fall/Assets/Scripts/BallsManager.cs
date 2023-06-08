@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class BallsManager : MonoBehaviour
 {
-    
     private Transform player;
     public GameObject ballsHolder;
     private int numberOfBalls;
