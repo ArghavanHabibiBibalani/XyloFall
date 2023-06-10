@@ -113,3 +113,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 0
+  NoteParticles: {fileID: 267240221503650401, guid: 4e7878db2613590458469c48bc832b47,
+    type: 3}
