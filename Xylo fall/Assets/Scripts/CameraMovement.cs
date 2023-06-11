@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,18 +5,18 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     private const float OVERTAKINGOFFSET = 0.01f; // Offset for giving the camera priority when the last lowest ball stops moving
-    private static bool _hasWon = false;
 
-    public Transform BallsEmpty; // Must be an empty GameObject parenting all the balls on the scene
+    public Transform BallsHolder; // Must be an empty GameObject parenting all the balls on the scene
     public float TweenSpeed = 10f;
     public float DefaultSpeed = 5f;
 
     private List<Transform> _ballsTransforms; // List of all the balls with BallsEmpty as their parent
+    private float _finishLineY; // The y value on which the camera should stop moving downwards
 
     public void Awake()
     {
         UpdateBallsList();
-        TriggerWin.OnWinDetected += OnWin;
+        _finishLineY = GameObject.FindGameObjectWithTag("FinishLine").GetComponent<Transform>().position.y;
     }
 
     public void Update()
@@ -27,7 +26,7 @@ public class CameraMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (_hasWon == false)
+        if (transform.position.y > _finishLineY)
         {
             if (ShouldFollowLowestBall())
             {
@@ -46,7 +45,7 @@ public class CameraMovement : MonoBehaviour
 
     public void UpdateBallsList()
     {
-        _ballsTransforms = BallsEmpty.GetComponentsInChildren<Transform>().Where(t => t.tag == "ball").ToList();
+        _ballsTransforms = BallsHolder.GetComponentsInChildren<Transform>().Where(t => t.tag == "ball").ToList();
     }
 
     private float GetLowestBallY()
@@ -54,10 +53,8 @@ public class CameraMovement : MonoBehaviour
         return _ballsTransforms.Select(t => t.transform.position.y).Min();
     }
 
-    private bool ShouldFollowLowestBall()
+    private bool ShouldFollowLowestBall() // Return true if a ball is ahead of the camera
     {
         return GetLowestBallY() < transform.position.y - OVERTAKINGOFFSET;
     }
-
-    private void OnWin(object sender, EventArgs args) { _hasWon = true; }
  }

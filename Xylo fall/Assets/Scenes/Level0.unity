@@ -222,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339139365}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25, y: 0, z: 0}
+  m_LocalPosition: {x: 20.4, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -460,7 +460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606524594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.161938, y: -8.993775, z: -4.4337845}
+  m_LocalPosition: {x: 23.161938, y: -8.993775, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -742,7 +742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -50}
+  m_LocalPosition: {x: 0, y: 0, z: -38.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087ba4e097eea3e4ea3924aa8718b03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BallsEmpty: {fileID: 0}
+  BallsHolder: {fileID: 0}
   TweenSpeed: 10
   DefaultSpeed: 5
 --- !u!1 &1364229505
@@ -899,7 +899,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373276970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25, y: 0, z: 0}
+  m_LocalPosition: {x: -20.4, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -936,7 +936,7 @@ PrefabInstance:
     - target: {fileID: 3781743376092587171, guid: d5c9e20efa769af48a0e2f45938f539a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.4337807
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3781743376092587171, guid: d5c9e20efa769af48a0e2f45938f539a,
         type: 3}
