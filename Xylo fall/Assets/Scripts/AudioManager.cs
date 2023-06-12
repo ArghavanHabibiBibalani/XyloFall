@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -11,6 +12,12 @@ public class AudioManager : MonoBehaviour
         {
             sound.Source = gameObject.AddComponent<AudioSource>();
             sound.Source.clip = sound.Clip;
+            if (sound.Name == "levelMusic")
+            {
+                sound.Source.volume = 0.6f;
+                sound.Source.loop = true;
+                sound.Source.Play();
+            }
         }
     }
     public void PlaySound(string name, float volume, float pitch)
