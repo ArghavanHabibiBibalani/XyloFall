@@ -1,47 +1,48 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
-public class rotateMallet : MonoBehaviour
+public class RotateMallet : MonoBehaviour
 {
-    public bool isActive = false;
+    public float DefaultAngleLimit;
+    public float SmoothingModifier;
+
+    private float _currentStartingAngle;
+    private bool _isLocked = false;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private float _time = 0f;
+
+    private void Awake()
     {
-        
+        _currentStartingAngle = DefaultAngleLimit;
+        transform.rotation = Quaternion.Euler(0, 0, DefaultAngleLimit);
+        ActivateMallet.OnMalletTouched += OnTouch;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        var pos = transform.position.x;
-
-        if (isActive)
+        if (_isLocked && _time < 1)
         {
-            if (Input.touchCount == 1)
-            {
-                Touch screenTouch = Input.GetTouch(0);
-
-                if(screenTouch.phase == TouchPhase.Moved)
-                {
-                    if (screenTouch.deltaPosition.x < pos + 1 || screenTouch.deltaPosition.x > pos + 1)
-                    {
-                        transform.Rotate(screenTouch.deltaPosition.y, screenTouch.deltaPosition.x, 0f);////////////
-                    }
-
-                }
-
-                if(screenTouch.phase == TouchPhase.Ended)
-                {
-                    isActive = false;
-                }
-
-            }
+            _time += Time.deltaTime * SmoothingModifier;
         }
-
-        
+    }
+    void OnTouch(Collider malletCollider)
+    {
+        if (malletCollider.Equals(GetComponent<MeshCollider>()) && !_isLocked)
+        {
+            _isLocked = true;
+            StartCoroutine(ToggleRotation(_currentStartingAngle, -_currentStartingAngle));
+        }
+    }
+    IEnumerator ToggleRotation(float startAngle, float targetAngle)
+    {
+        while (_time < 1)
+        {
+            transform.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, _currentStartingAngle), Quaternion.Euler(0, 0, -_currentStartingAngle), _time);
+            yield return null;
+        }
+        _currentStartingAngle = -_currentStartingAngle;
+        _time = 0f;
+        _isLocked = false;
     }
 }

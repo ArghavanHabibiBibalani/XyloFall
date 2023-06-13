@@ -1,7 +1,11 @@
+using System;
 using UnityEngine;
 
-public class activateMallet : MonoBehaviour
+public class ActivateMallet : MonoBehaviour
 {
+    public delegate void MalletTouchedHandler(Collider malletCollider);
+
+    public static event MalletTouchedHandler OnMalletTouched;
     void Update()
     {
         if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
@@ -13,8 +17,7 @@ public class activateMallet : MonoBehaviour
             {
                 if(hit.transform.tag == "Mallet")
                 {
-                    var MalletScript = hit.collider.GetComponent<rotateMallet>();
-                    MalletScript.isActive = true;
+                    OnMalletTouched?.Invoke(hit.collider);
                 }
             }
         }
