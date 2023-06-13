@@ -7,8 +7,10 @@ public class TriggerWin : MonoBehaviour
 
     public GameObject NoteParticles; // Reference to the NoteParticles prefab for instantiating
 
+    public delegate void TriggerWinHandler();
+
     [HideInInspector]
-    public static event EventHandler OnWinDetected; // Winning event
+    public static event TriggerWinHandler OnWinDetected; // Winning event
 
     [HideInInspector]
     public static int BonusCount = 0; // Used in scoring, also used as an iteration index for playing sounds when each bonus ball passes the finish line
@@ -30,7 +32,7 @@ public class TriggerWin : MonoBehaviour
             if (_isCalculatingBonus == false)
             {
                 _isCalculatingBonus = true;
-                OnWinDetected?.Invoke(this, EventArgs.Empty);
+                OnWinDetected?.Invoke();
                 _audioManager.PlaySound("sweep", 1, 1);
                 _finishingParticlesTransform.position = particlePosition;
                 GetComponentInChildren<ParticleSystem>().Play();

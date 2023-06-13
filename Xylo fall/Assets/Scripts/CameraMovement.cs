@@ -11,12 +11,14 @@ public class CameraMovement : MonoBehaviour
     public float DefaultSpeed = 5f;
 
     private List<Transform> _ballsTransforms; // List of all the balls with BallsEmpty as their parent
+    private bool _isLost = false; // Flag showing if the game is lost or not
     private float _finishLineY; // The y value on which the camera should stop moving downwards
 
     public void Awake()
     {
         UpdateBallsList();
         _finishLineY = GameObject.FindGameObjectWithTag("FinishLine").GetComponent<Transform>().position.y;
+        TriggerLoss.OnLossDetected += OnLoss;
     }
 
     public void Update()
@@ -26,7 +28,7 @@ public class CameraMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (transform.position.y > _finishLineY)
+        if (transform.position.y > _finishLineY && _isLost == false)
         {
             if (ShouldFollowLowestBall())
             {
@@ -56,5 +58,11 @@ public class CameraMovement : MonoBehaviour
     private bool ShouldFollowLowestBall() // Return true if a ball is ahead of the camera
     {
         return GetLowestBallY() < transform.position.y - OVERTAKINGOFFSET;
+    }
+
+    private void OnLoss()
+    {
+        _isLost = true;
+        Debug.Log("lost");
     }
  }

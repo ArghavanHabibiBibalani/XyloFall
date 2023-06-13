@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class GateManager : MonoBehaviour
 {
     public TextMeshPro gateNum;
-    public int randomNum;
+    public int Factor;
 
-    void Start()
+    void Awake()
     { 
-        randomNum =Random.Range(2,5);
-        gateNum.text = "X" + randomNum.ToString();
-        randomNum -= 1;
+        if (Factor <= 1) { Factor = Random.Range(2, 5); }
+        gateNum.text = "X" + Factor.ToString();
+        Factor -= 1;
     }
 }

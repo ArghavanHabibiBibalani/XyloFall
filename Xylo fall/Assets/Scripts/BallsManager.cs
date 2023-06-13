@@ -8,9 +8,9 @@ public class BallsManager : MonoBehaviour
 {
     public GameObject ballsHolder;
     [SerializeField] GameObject ball;
-    public float speedBall = 10;
+    public float speedBall = 100;
     public float moveSpeed = 5;
-    public float gravityModifier = 1;
+    public float GravityModifier;
     //---------------------------------------------------------------
 
     private Transform player;
@@ -23,7 +23,7 @@ public class BallsManager : MonoBehaviour
     {
         player= transform;
         numberOfBalls = transform.childCount;
-        Physics.gravity *= gravityModifier;
+        if (Physics.gravity.magnitude == 1) { Physics.gravity *= GravityModifier; }
         //-----------------------------------------------
 
         rb = GetComponent<Rigidbody>();
@@ -60,12 +60,15 @@ public class BallsManager : MonoBehaviour
             
             ballsHolder.transform.GetChild(i).gameObject.AddComponent<SphereCollider>();
 
+
             targetRigidbody = ballsHolder.transform.GetChild(i).gameObject.GetComponent<Rigidbody>();
-            targetRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            targetRigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
+            targetRigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             targetRigidbody.AddForce(currentAcceleration, ForceMode.Acceleration);
             BallsManager secondScript =  ballsHolder.transform.GetChild(i).gameObject.AddComponent<BallsManager>();
             secondScript.ballsHolder = ballsHolder;
             secondScript.ball = ball;
+            secondScript.GravityModifier = GravityModifier;
         }
         numberOfBalls = ballsHolder.transform.childCount;
         Destroy(gameObject);
@@ -77,7 +80,7 @@ public class BallsManager : MonoBehaviour
         {
             var gateManager = other.GetComponent<GateManager>();
 
-            StartCoroutine(MakeBalls(1 + gateManager.randomNum));
+            StartCoroutine(MakeBalls(1 + gateManager.Factor));
         }
     }
  

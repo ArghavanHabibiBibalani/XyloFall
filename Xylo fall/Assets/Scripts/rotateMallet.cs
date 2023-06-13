@@ -28,7 +28,7 @@ public class RotateMallet : MonoBehaviour
     }
     void OnTouch(Collider malletCollider)
     {
-        if (malletCollider.Equals(GetComponent<MeshCollider>()) && !_isLocked)
+        if (malletCollider.Equals(GetComponent<SphereCollider>()) && !_isLocked)
         {
             _isLocked = true;
             StartCoroutine(ToggleRotation(_currentStartingAngle, -_currentStartingAngle));

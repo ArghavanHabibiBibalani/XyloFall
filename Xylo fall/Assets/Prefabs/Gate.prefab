@@ -284,4 +284,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gateNum: {fileID: 6615120319971992497}
-  randomNum: 0
+  Factor: 0

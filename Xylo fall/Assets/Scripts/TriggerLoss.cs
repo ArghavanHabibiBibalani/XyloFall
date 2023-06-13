@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class TriggerLoss : MonoBehaviour
 {
+    public delegate void TriggerLossHandler();
     [HideInInspector]
-    public static event EventHandler OnLossDetected;
+    public static event TriggerLossHandler OnLossDetected;
 
     private Transform _ballsHolder;
     private Renderer[] _ballsRenderers;
@@ -25,7 +26,8 @@ public class TriggerLoss : MonoBehaviour
         {
             if (r.isVisible) { return; }
         }
-        OnLossDetected?.Invoke(this, EventArgs.Empty);
+        OnLossDetected?.Invoke();
+        Debug.Log("lost");
     }
     private void UpdateBalls()
     {
