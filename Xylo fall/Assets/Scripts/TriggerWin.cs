@@ -3,18 +3,21 @@ using UnityEngine;
 
 public class TriggerWin : MonoBehaviour
 {
-    private static bool _isCalculatingBonus = false;
 
     public GameObject NoteParticles; // Reference to the NoteParticles prefab for instantiating
 
-    public delegate void TriggerWinHandler();
+    public delegate void WinHandler();
 
-    [HideInInspector]
-    public static event TriggerWinHandler OnWinDetected; // Winning event
+    public static event WinHandler OnWinDetected; // Winning event
+
+    public static event WinHandler OnLevelComplete; // Level completion event - gets invoked after the timer goes off
 
     [HideInInspector]
     public static int BonusCount = 0; // Used in scoring, also used as an iteration index for playing sounds when each bonus ball passes the finish line
 
+    private bool _isCalculatingBonus = false;
+    private bool _levelComplete = false;
+    private float _timer = -1;
     private AudioManager _audioManager;
     private Transform _finishingParticlesTransform;
 
@@ -22,6 +25,24 @@ public class TriggerWin : MonoBehaviour
     {
         _audioManager = FindObjectOfType<AudioManager>();
         _finishingParticlesTransform = GameObject.FindGameObjectWithTag("FinishingParticles").transform;
+    }
+
+    private void Start()
+    {
+        BonusCount = 0;
+    }
+
+    private void Update()
+    {
+        if (_timer != -1)
+        {
+            _timer += Time.deltaTime;
+        }
+        if (_timer >= 3)
+        {
+            OnLevelComplete?.Invoke(); // Only invoked once per level
+            _levelComplete = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -40,11 +61,11 @@ public class TriggerWin : MonoBehaviour
             else
             {
                 var Notes = Instantiate(NoteParticles, particlePosition, Quaternion.identity);
-                if (BonusCount < 8) { _audioManager.PlaySound(BonusCount - 1, 1, 1); }
-                else { _audioManager.PlaySound(7, 1, 1); }
+                _audioManager.PlaySound((BonusCount % 8), 1, 1);
                 Notes.GetComponent<ParticleSystem>().Play();
+                if (_levelComplete == false) { BonusCount++; }
             }
-            BonusCount++;
+            _timer = 0;
         }
     }
 }
