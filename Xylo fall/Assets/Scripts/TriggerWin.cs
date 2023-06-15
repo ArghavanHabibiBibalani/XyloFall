@@ -54,14 +54,14 @@ public class TriggerWin : MonoBehaviour
             {
                 _isCalculatingBonus = true;
                 OnWinDetected?.Invoke();
-                _audioManager.PlaySound("sweep", 1, 1);
+                _audioManager.PlaySoundOneShot("sweep", 1);
                 _finishingParticlesTransform.position = particlePosition;
                 GetComponentInChildren<ParticleSystem>().Play();
             }
             else
             {
                 var Notes = Instantiate(NoteParticles, particlePosition, Quaternion.identity);
-                _audioManager.PlaySound((BonusCount % 8), 1, 1);
+                _audioManager.PlaySoundOneShot((BonusCount % 8), 1);
                 Notes.GetComponent<ParticleSystem>().Play();
                 if (_levelComplete == false) { BonusCount++; }
             }

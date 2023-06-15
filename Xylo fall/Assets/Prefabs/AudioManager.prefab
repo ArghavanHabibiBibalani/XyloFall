@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7978649637658726323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7978649637658726321}
+  - component: {fileID: 7978649637658726320}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7978649637658726321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978649637658726323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7978649637658726320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978649637658726323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 359d2a33612b3ce459a220b92da3ef67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: barC
+    Clip: {fileID: 8300000, guid: 311d886dd41e5834b848342d9a6a836d, type: 3}
+    Source: {fileID: 0}
+  - Name: barD
+    Clip: {fileID: 8300000, guid: 7077aefba3b067b4093a468f05b8a79b, type: 3}
+    Source: {fileID: 0}
+  - Name: barE
+    Clip: {fileID: 8300000, guid: 9c4593c99007abd4eb48bd3768cda970, type: 3}
+    Source: {fileID: 0}
+  - Name: barF
+    Clip: {fileID: 8300000, guid: 53bb7f2eda7d7c74c879a2cd7d4a16f2, type: 3}
+    Source: {fileID: 0}
+  - Name: barG
+    Clip: {fileID: 8300000, guid: 632bfb072501ed54dbf9f6f6ec59af2e, type: 3}
+    Source: {fileID: 0}
+  - Name: barA
+    Clip: {fileID: 8300000, guid: 5a2a9b36871416a4d839ecbd70f186ef, type: 3}
+    Source: {fileID: 0}
+  - Name: barB
+    Clip: {fileID: 8300000, guid: 217403f76c3bca747af7dcc256038d61, type: 3}
+    Source: {fileID: 0}
+  - Name: barC2
+    Clip: {fileID: 8300000, guid: a827b2fdbd19e8844813044212302835, type: 3}
+    Source: {fileID: 0}
+  - Name: sweep
+    Clip: {fileID: 8300000, guid: d73dbab29b2fdc740b7ea66a2d97568d, type: 3}
+    Source: {fileID: 0}
+  - Name: levelMusic
+    Clip: {fileID: 8300000, guid: 5f5d810239415fb469146fb0dc98ea96, type: 3}
+    Source: {fileID: 0}
+  - Name: menuMusic
+    Clip: {fileID: 8300000, guid: 7ae381711d9f60a4fa2635c87e817325, type: 3}
+    Source: {fileID: 0}

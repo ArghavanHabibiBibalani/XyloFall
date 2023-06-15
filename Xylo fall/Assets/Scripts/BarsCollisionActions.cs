@@ -25,7 +25,7 @@ public class BarsCollisionActions : MonoBehaviour
 
             if (volume > 0.2f)
             {
-                _audioManager.PlaySound("bar" + Color.ToString(), volume, 1);
+                _audioManager.PlaySoundOneShot("bar" + Color.ToString(), volume);
                 var Notes = Instantiate(NoteParticles, collision.contacts[0].point, Quaternion.identity);
                 Notes.GetComponent<ParticleSystem>().Play();
             }
