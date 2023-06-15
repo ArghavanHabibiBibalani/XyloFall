@@ -999,7 +999,7 @@ Transform:
   m_GameObject: {fileID: 313881243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 20.61}
-  m_LocalScale: {x: 75.294106, y: 72.511406, z: 1.7601}
+  m_LocalScale: {x: 112.94116, y: 29.413906, z: 1.7601}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4473,6 +4473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChangeLevelToMenu: 0
+  ProgressLevel: 0
   CurrentStateType: 0
   levelButtons:
   - {fileID: 212467520}

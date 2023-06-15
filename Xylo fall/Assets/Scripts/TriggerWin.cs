@@ -38,6 +38,10 @@ public class TriggerWin : MonoBehaviour
         {
             _timer += Time.deltaTime;
         }
+    }
+
+    private void LateUpdate()
+    {
         if (_timer >= 3)
         {
             OnLevelComplete?.Invoke(); // Only invoked once per level
