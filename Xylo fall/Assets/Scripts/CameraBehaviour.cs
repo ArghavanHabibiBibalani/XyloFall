@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
 {
+
     private const float OVERTAKINGOFFSET = 0.01f; // Offset for giving the camera priority when the last lowest ball stops moving
     private const float LOSINGDISTANCE = 50f;
 
     public float TweenSpeed = 10f;
     public float DefaultSpeed = 5f;
+
+    public delegate void MalletTouchedHandler(Collider malletCollider);
+
+    public event MalletTouchedHandler OnMalletTouched;
 
     private Transform _ballsHolder; // Must be an empty GameObject parenting all the balls on the scene
     private List<Transform> _ballsTransforms; // List of all the balls with BallsEmpty as their parent
@@ -19,21 +24,43 @@ public class CameraBehaviour : MonoBehaviour
     [HideInInspector]
     public static event LossHandler OnLossDetected;
 
-    public void Awake()
+    public void Start()
     {
-        _ballsHolder = GameObject.FindGameObjectWithTag("BallsHolder").transform;
-        UpdateBallsList();
-        _finishLineY = GameObject.FindGameObjectWithTag("FinishLine").GetComponent<Transform>().position.y;
+        if (GameManager.instance.CurrentStateType != GameManager.GameStateType.MAINMENU)
+        {
+            _ballsHolder = GameObject.FindWithTag("BallsHolder").transform;
+            UpdateBallsList();
+            _finishLineY = GameObject.FindGameObjectWithTag("FinishLine").GetComponent<Transform>().position.y;
+            Debug.Log("Scene camera started");
+        }
     }
 
     public void Update()
     {
-        UpdateBallsList();
+        if (GameManager.instance.CurrentStateType != GameManager.GameStateType.MAINMENU)
+        {
+            UpdateBallsList();
+
+            if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "Mallet")
+                    {
+                        OnMalletTouched?.Invoke(hit.collider);
+                    }
+                }
+            }
+        }
+            
     }
 
     public void FixedUpdate()
     {
-        if (transform.position.y > _finishLineY && _isLost == false)
+        if (transform.position.y > _finishLineY && _isLost == false && GameManager.instance.CurrentStateType == GameManager.GameStateType.LEVEL)
         {
             if (transform.position.y <= GetLowestBallY() - LOSINGDISTANCE)
             {

@@ -8,14 +8,15 @@ public class RotateMallet : MonoBehaviour
 
     private float _currentStartingAngle;
     private bool _isLocked = false;
-
     private float _time = 0f;
+    private CameraBehaviour _camera;
 
     private void Awake()
     {
+        _camera = FindObjectOfType<CameraBehaviour>();
         _currentStartingAngle = DefaultAngleLimit;
         transform.rotation = Quaternion.Euler(0, 0, DefaultAngleLimit);
-        ActivateMallet.OnMalletTouched += OnTouch;
+        _camera.OnMalletTouched += OnTouch;
     }
 
     void Update()
