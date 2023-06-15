@@ -31,7 +31,6 @@ public class CameraBehaviour : MonoBehaviour
             _ballsHolder = GameObject.FindWithTag("BallsHolder").transform;
             UpdateBallsList();
             _finishLineY = GameObject.FindGameObjectWithTag("FinishLine").GetComponent<Transform>().position.y;
-            Debug.Log("Scene camera started");
         }
     }
 

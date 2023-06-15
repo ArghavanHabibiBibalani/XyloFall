@@ -42,6 +42,8 @@ public class TriggerWin : MonoBehaviour
         {
             OnLevelComplete?.Invoke(); // Only invoked once per level
             _levelComplete = true;
+            GameManager.instance.ProgressLevel = true;
+            GameManager.instance.gameObject.SetActive(true);
         }
     }
 

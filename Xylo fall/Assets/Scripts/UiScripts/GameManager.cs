@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool ChangeLevelToMenu = false;
     [HideInInspector]
+    public bool ProgressLevel = false;
+    [HideInInspector]
     public GameStateType CurrentStateType = GameStateType.MAINMENU;
 
     public Button[] levelButtons;
@@ -51,6 +53,13 @@ public class GameManager : MonoBehaviour
             CurrentStateType = GameStateType.MAINMENU;
             OnSceneChanged.Invoke();
             SceneManager.LoadScene("MainMenu");
+        }
+        if (ProgressLevel)
+        {
+            ProgressLevel = false;
+            CurrentLevel++;
+            LoadLevel(CurrentLevel);
+            OnSceneChanged.Invoke();
         }
     }
 
