@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static event Action OnSceneChanged;
 
     [HideInInspector]
+    public bool ChangeLevelToMenu = false;
+    [HideInInspector]
     public GameStateType CurrentStateType = GameStateType.MAINMENU;
 
     public Button[] levelButtons;
@@ -41,6 +43,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (ChangeLevelToMenu)
+        {
+            ChangeLevelToMenu = false;
+            CurrentStateType = GameStateType.MAINMENU;
+            OnSceneChanged.Invoke();
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
     private void LoadLevel(int levelIndex)
     {
         if (CurrentLevel >= levelIndex)
@@ -48,6 +61,7 @@ public class GameManager : MonoBehaviour
             string sceneName = "Level" + levelIndex;
             CurrentStateType = GameStateType.LEVEL;
             OnSceneChanged.Invoke();
+            gameObject.SetActive(false);
 
             // Load the specified scene
             SceneManager.LoadScene(sceneName);

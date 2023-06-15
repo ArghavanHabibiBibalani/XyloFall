@@ -38,7 +38,7 @@ public class CameraBehaviour : MonoBehaviour
             if (transform.position.y <= GetLowestBallY() - LOSINGDISTANCE)
             {
                 _isLost = true;
-                OnLossDetected.Invoke();
+                OnLossDetected?.Invoke();
             }
             if (ShouldFollowLowestBall())
             {

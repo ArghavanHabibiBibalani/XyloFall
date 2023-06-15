@@ -7,12 +7,6 @@ public class BarsCollisionActions : MonoBehaviour
     public BarColor Color;
     public GameObject NoteParticles;
 
-    private AudioManager _audioManager;
-
-    private void Awake()
-    {
-        _audioManager = FindObjectOfType<AudioManager>();
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "ball" && collision.relativeVelocity.magnitude > MINIMUMVELOCITY)
@@ -25,7 +19,7 @@ public class BarsCollisionActions : MonoBehaviour
 
             if (volume > 0.2f)
             {
-                _audioManager.PlaySoundOneShot("bar" + Color.ToString(), volume);
+                AudioManager.instance.PlaySoundOneShot("bar" + Color.ToString(), volume);
                 var Notes = Instantiate(NoteParticles, collision.contacts[0].point, Quaternion.identity);
                 Notes.GetComponent<ParticleSystem>().Play();
             }

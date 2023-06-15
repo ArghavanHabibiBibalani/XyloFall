@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class UILevelManager : MonoBehaviour
 {
+    private GameObject _gameManager;
+
+    private void Start()
+    {
+        _gameManager = GameManager.instance.gameObject;
+    }
     public void PasueButtonEnter()
     {
         Time.timeScale = 0;
@@ -27,12 +33,11 @@ public class UILevelManager : MonoBehaviour
         }
     }
 
-     
-
     public void BackToMain()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        AudioListener.volume = 1;
+        _gameManager.SetActive(true);
+        GameManager.instance.ChangeLevelToMenu = true;
     }
-
 }
