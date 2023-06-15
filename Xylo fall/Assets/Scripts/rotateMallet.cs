@@ -9,7 +9,6 @@ public class RotateMallet : MonoBehaviour
     private float _currentStartingAngle;
     private bool _isLocked = false;
 
-
     private float _time = 0f;
 
     private void Awake()
