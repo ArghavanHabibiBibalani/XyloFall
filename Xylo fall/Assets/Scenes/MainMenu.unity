@@ -1368,12 +1368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4cc353579292f498dc09ad11c2d199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sounds:
-  - {fileID: 8300000, guid: 5a2a9b36871416a4d839ecbd70f186ef, type: 3}
-  - {fileID: 8300000, guid: 311d886dd41e5834b848342d9a6a836d, type: 3}
-  - {fileID: 8300000, guid: 53bb7f2eda7d7c74c879a2cd7d4a16f2, type: 3}
-  - {fileID: 8300000, guid: 9c4593c99007abd4eb48bd3768cda970, type: 3}
-  currentLevel: Level0
   levelButtons:
   - {fileID: 212467520}
   - {fileID: 1666058059}

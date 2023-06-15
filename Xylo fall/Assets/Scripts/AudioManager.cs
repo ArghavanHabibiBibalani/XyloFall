@@ -22,13 +22,14 @@ public class AudioManager : MonoBehaviour
             {
                 sound.Source = gameObject.AddComponent<AudioSource>();
                 sound.Source.clip = sound.Clip;
+                if (sound.Name == "levelMusic" ||  sound.Name == "menuMusic") { sound.Source.loop = true; }
             }
         }
     }
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "MainMenu") { PlaySound("menuMusic", 0.6f); }
-        else { PlaySound("levelMusic", 0.6f); }
+        GameManager.OnSceneChanged += OnSceneChanged;
+        UpdateMusic();
     }
     public void PlaySound(string name, float volume)
     {
@@ -51,5 +52,18 @@ public class AudioManager : MonoBehaviour
     {
         AudioSource source = Sounds[index].Source;
         source.PlayOneShot(source.clip, volume);
+    }
+    private void OnSceneChanged()
+    {
+        UpdateMusic();
+    }
+    private void UpdateMusic()
+    {
+        foreach (Sound s in Sounds)
+        {
+            if (s.Name == "levelMusic" || s.Name == "menuMusic") { s.Source.Stop(); }
+        }
+        if (GameManager.instance.CurrentStateType == GameManager.GameStateType.MAINMENU) { PlaySound("menuMusic", 0.6f); }
+        else { PlaySound("levelMusic", 0.6f); }
     }
 }
