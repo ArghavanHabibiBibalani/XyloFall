@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
 
     public Button[] levelButtons;
 
-    private int CurrentLevel;
+    private int HighestLevel;
+
     private void Awake()
     {
         if (instance != null)
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        CurrentLevel = 1;
+        HighestLevel = 1;
     }
 
     private void Start()
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void Update()
     {
         if (ChangeLevelToMenu)
         {
@@ -57,15 +58,24 @@ public class GameManager : MonoBehaviour
         if (ProgressLevel)
         {
             ProgressLevel = false;
-            CurrentLevel++;
-            LoadLevel(CurrentLevel);
+            var currentLevel = SceneManager.GetActiveScene().buildIndex;
+            Debug.Log("Current level : " + currentLevel);
+            Debug.Log("Scene count : " + SceneManager.sceneCountInBuildSettings);
+            if (currentLevel >= HighestLevel) { HighestLevel++; }
+            if (currentLevel < SceneManager.sceneCountInBuildSettings - 1) { LoadLevel(currentLevel + 1); }
+            else 
+            { 
+                SceneManager.LoadScene("MainMenu");
+                CurrentStateType = GameStateType.MAINMENU;
+                OnSceneChanged.Invoke();
+            }
             OnSceneChanged.Invoke();
         }
     }
 
     private void LoadLevel(int levelIndex)
     {
-        if (CurrentLevel >= levelIndex)
+        if (HighestLevel >= levelIndex)
         {
             string sceneName = "Level" + levelIndex;
             CurrentStateType = GameStateType.LEVEL;
@@ -80,7 +90,7 @@ public class GameManager : MonoBehaviour
     public void StartButton()
     {
         AudioManager.instance.PlaySoundOneShot("barA", 1);
-        LoadLevel(CurrentLevel);
+        LoadLevel(HighestLevel);
     }
 
     public void LevelButton()
