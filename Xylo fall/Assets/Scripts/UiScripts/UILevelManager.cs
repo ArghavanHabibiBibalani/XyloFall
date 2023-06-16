@@ -7,6 +7,7 @@ public class UILevelManager : MonoBehaviour
 {
     public void PasueButtonEnter()
     {
+        AudioManager.instance.PlaySoundOneShot("pause", 1);
         Time.timeScale = 0;
     }
 

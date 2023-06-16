@@ -7,6 +7,7 @@ public class CameraBehaviour : MonoBehaviour
 
     private const float OVERTAKINGOFFSET = 0.01f; // Offset for giving the camera priority when the last lowest ball stops moving
     private const float LOSINGDISTANCE = 50f;
+    private const float DANGERDISTANCE = 25f;
 
     public float TweenSpeed = 10f;
     public float DefaultSpeed = 5f;
@@ -18,6 +19,7 @@ public class CameraBehaviour : MonoBehaviour
     private Transform _ballsHolder; // Must be an empty GameObject parenting all the balls on the scene
     private List<Transform> _ballsTransforms; // List of all the balls with BallsEmpty as their parent
     private bool _isLost = false; // Flag showing if the game is lost or not
+    private bool _dangerLocked = false;
     private float _finishLineY; // The y value on which the camera should stop moving downwards
 
     public delegate void LossHandler();
@@ -53,6 +55,19 @@ public class CameraBehaviour : MonoBehaviour
                     }
                 }
             }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray,out hit))
+                {
+                    if (hit.transform.tag == "Mallet")
+                    {
+                        OnMalletTouched?.Invoke(hit.collider);
+                    }
+                }
+            }
         }
             
     }
@@ -61,11 +76,25 @@ public class CameraBehaviour : MonoBehaviour
     {
         if (transform.position.y > _finishLineY && _isLost == false && GameManager.instance.CurrentStateType == GameManager.GameStateType.LEVEL)
         {
+            if (transform.position.y <= GetLowestBallY() - DANGERDISTANCE && _dangerLocked == false)
+            {
+                _dangerLocked = true;
+                AudioManager.instance.PlaySoundOneShot("danger", 1);
+            }
+            else if (transform.position.y > GetLowestBallY() - DANGERDISTANCE && _dangerLocked == true)
+            {
+                _dangerLocked = false;
+            }
+
             if (transform.position.y <= GetLowestBallY() - LOSINGDISTANCE)
             {
                 _isLost = true;
                 OnLossDetected?.Invoke();
+                AudioManager.instance.PlaySoundOneShot("loss", 1);
+                GameManager.instance.ChangeLevelToMenu = true;
+                GameManager.instance.gameObject.SetActive(true);
             }
+
             if (ShouldFollowLowestBall())
             {
                 var desiredPosition = new Vector3(transform.position.x, GetLowestBallY(), transform.position.z);

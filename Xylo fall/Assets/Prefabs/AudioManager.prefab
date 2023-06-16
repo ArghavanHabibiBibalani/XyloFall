@@ -78,3 +78,12 @@ MonoBehaviour:
   - Name: menuMusic
     Clip: {fileID: 8300000, guid: 7ae381711d9f60a4fa2635c87e817325, type: 3}
     Source: {fileID: 0}
+  - Name: pause
+    Clip: {fileID: 8300000, guid: 865d563dec9639e4ab1ad3f2a2de73e4, type: 3}
+    Source: {fileID: 0}
+  - Name: loss
+    Clip: {fileID: 8300000, guid: 2c24f3c81c268b8439ff5da5411fbade, type: 3}
+    Source: {fileID: 0}
+  - Name: danger
+    Clip: {fileID: 8300000, guid: 555107de20ff6744f95e8ae1db892d3c, type: 3}
+    Source: {fileID: 0}
