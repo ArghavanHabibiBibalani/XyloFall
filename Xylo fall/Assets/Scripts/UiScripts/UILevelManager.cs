@@ -32,6 +32,6 @@ public class UILevelManager : MonoBehaviour
         Time.timeScale = 1f;
         AudioListener.volume = 1;
         GameManager.instance.ChangeLevelToMenu = true;
-        GameManager.instance.Update();
+        GameManager.instance.gameObject.SetActive(true);
     }
 }
