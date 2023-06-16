@@ -59,13 +59,12 @@ public class GameManager : MonoBehaviour
         {
             ProgressLevel = false;
             var currentLevel = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log("Current level : " + currentLevel);
-            Debug.Log("Scene count : " + SceneManager.sceneCountInBuildSettings);
             if (currentLevel >= HighestLevel) { HighestLevel++; }
             if (currentLevel < SceneManager.sceneCountInBuildSettings - 1) { LoadLevel(currentLevel + 1); }
             else 
             { 
                 SceneManager.LoadScene("MainMenu");
+                gameObject.SetActive(true);
                 CurrentStateType = GameStateType.MAINMENU;
                 OnSceneChanged.Invoke();
             }
